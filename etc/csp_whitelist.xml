@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <!-- Allow styles from Digital Ocean Spaces -->
+        <policy id="style-src">
+            <values>
+                <value id="magentomedia" type="host">https://<Bucket-Name>.nyc3.digitaloceanspaces.com</value>
+            </values>
+        </policy>
+        <!-- Allow images from Digital Ocean Spaces -->
+        <policy id="img-src">
+            <values>
+                <value id="magentomedia" type="host">https://<Bucket-Name>.nyc3.digitaloceanspaces.com</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.magento.com/schema/magento/di/di.xsd">
+    <preference for="Magento\Catalog\Model\Product\Image\UrlBuilder" type="Ocode\S3Digital\Model\Product\Image\UrlBuilder" />
+</config>

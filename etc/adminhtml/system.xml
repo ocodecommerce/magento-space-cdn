@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magecomp" translate="label" sortOrder="100">
+            <label><![CDATA[Ocode]]></label>
+        </tab>
+		<section id="s3amazon" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>S3 Diigital Occen Space</label>
+            <tab>magecomp</tab>
+            <resource>Ocode_S3Digital::config_s3amazon</resource>
+			<group id="general" translate="label"  sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allowed File to save on Digital Occen Space</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="twilionote" type="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>NOTE</label>
+                    <comment><![CDATA[<strong>Run 'composer require aws/aws-sdk-php' from CLI to use Digital Occen Space S3.</strong>]]></comment>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="access_key" translate="label comment" type="password" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Access Key</label>
+                    <validate>required-entry</validate>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="secret_key" translate="label comment" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Secret Key</label>
+                    <validate>required-entry</validate>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="bucket" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bucket</label>
+                    <validate>required-entry</validate>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="region" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Region</label>
+                    <validate>required-entry</validate>
+                    <source_model>Ocode\S3Digital\Model\Config\Region</source_model>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+               <!--  <field id="checkbox" translate="label comment" type="checkbox" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Ocode\S3Digital\Block\System\Config\Form\Checkbox</frontend_model>
+                    <validate>required-entry</validate>
+                    <depends><field id="enable">1</field></depends>
+                </field> -->
+                <field id="request_timeout" translate="label comment" type="hidden" sortOrder="70" >
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="custom_endpoint_enabled" translate="label" type="hidden" sortOrder="80" >
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="custom_endpoint" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Digital Occen Space Host</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="custom_endpoint_enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[Example: https://{region}.digitaloceanspaces.com]]></comment> 
+                </field>
+                <field id="check" translate="label comment" type="button" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Ocode\S3Digital\Block\System\Config\Form\Button</frontend_model>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+
+                <field id="validation_message" translate="label" type="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message</label>
+                    <frontend_model>Ocode\S3Digital\Block\System\Config\Form\Message</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+
+            </group>
+		</section>
+	</system>
+</config>

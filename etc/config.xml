@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/config.xsd">
+    <default>
+        <s3amazon>
+            <general>
+                <custom_endpoint_enabled>1</custom_endpoint_enabled>
+                <request_timeout>100</request_timeout>
+            </general>
+        </s3amazon>
+    </default>
+</config>

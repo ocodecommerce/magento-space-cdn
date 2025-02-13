@@ -1,0 +1,53 @@
+<script type="text/javascript">
+    //<![CDATA[
+    function validateData() {
+        var new_bucket = document.getElementById('s3amazon_general_bucket').value;
+        var secretkey  = document.getElementById('s3amazon_general_secret_key').value;
+        var accesskey  = document.getElementById('s3amazon_general_access_key').value;
+        var region  = document.getElementById('s3amazon_general_region').value;
+        if(secretkey=='' || accesskey=='' || region == '' || new_bucket==''){
+            if(secretkey=='' && accesskey=='' && region == '')
+                alert('Please Enter Secret Key Access Key and Region.');
+            else if(accesskey=='')
+                alert('Please Enter Access Key.');
+            else if(secretkey=='')
+                alert('Please Enter Secret Key.');
+            else if(new_bucket=='')
+                alert('Please Enter Bucket Name.');
+            else
+                alert('Please Enter Region.');
+        }
+        else
+        {
+            require(['jquery', 'jquery/ui','mage/mage','mage/validation'], function ($) {
+                $.ajax({
+                    url: '<?php echo $this->getAjaxCheckUrl();?>',
+                    type: 'post',
+                    showLoader: true,
+                    data: { secretkey: secretkey,
+                            accesskey:accesskey,
+                            new_bucket:new_bucket,
+                            region:region},
+                    success: function (response) {
+                        if (response.success){
+                            alert('Bucket Available');
+                            document.getElementById('s3amazon_checkbox').value = 1;
+                        }else{
+                            alert('Bucket Not Available');
+                            document.getElementById('s3amazon_checkbox').value = '';
+                            document.getElementById('s3amazon_general_bucket').value = '';
+                        }
+                    },
+                    error: function (response) {
+                        alert('Bucket Not Available');
+                        document.getElementById('s3amazon_checkbox').value = '';
+                        document.getElementById('s3amazon_general_bucket').value = '';
+                    }
+                });
+            });
+
+        }
+    }
+    //]]>
+</script>
+<?php echo $this->getButtonHtml();?>
